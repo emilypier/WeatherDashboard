@@ -15,7 +15,6 @@ var buttonClickHandler = function(event) {
     //clear old content from search box
     cityInputEl.textContent = "";
     cityName.value = ""; 
-    console.log("content cleared");
   }
   else {
     alert("Please enter a valid city.");
@@ -44,7 +43,6 @@ var getCoordinates = function(cityName) {
 
 //get city's weather today. "weather icon", "temp", "wind_speed", "humidity", "uvi"
 var getTodayWeather = function(weatherData) {
-  // console.log(weatherData);
   var cityLat = weatherData.coord.lat;
   var cityLong = weatherData.coord.lon;
   var cityName = weatherData.name;
@@ -64,8 +62,8 @@ var getTodayWeather = function(weatherData) {
   });
 };
 
+//displays today's weather on page
 function createCurrentWeather(currentWeather, city){
-console.log(currentWeather)
 var temp = currentWeather.temp;
 var windSpeed = currentWeather.wind_speed;
 var humidity = currentWeather.humidity;
@@ -125,8 +123,13 @@ var getFiveDay = function() {
     alert("unable to connect to API");
     console.log(error);
   });
-}
+};
 
+//displays 5 day forecast on page
+function createFiveDay(city){
+  console.log(city);
+
+}
 
 
 // add event listener to search button
