@@ -1,0 +1,12 @@
+#header {
+  background:rgb(115, 115, 255);
+}
+
+
+.jumbotron {
+  background-image: linear-gradient(45deg, #009edd 0%, #1a008f 100%);
+}
+
+.daily-forecast {
+  background-color: #46425c;
+}
