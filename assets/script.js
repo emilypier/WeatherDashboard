@@ -89,7 +89,7 @@ windEl.setAttribute('class', 'card-text');
 humidEl.setAttribute('class', 'card-text');
 uviEl.setAttribute('class', 'card-text');
 
-cardTitle.textContent = city + "(call date in here) ";
+cardTitle.textContent = city + "(add date here)";
 imgEl.setAttribute('src', icon);
 cardTitle.append(imgEl);
 
@@ -102,6 +102,13 @@ cardBody.append(cardTitle, tempEl, windEl, humidEl, uviEl);
 
 currentWeatherContainer.innerHTML = '';
 currentWeatherContainer.append(card);
+
+// // UV index color coding
+// if (uvIndex < 3) { uviEl.addClass("uv-low") };
+// if (uvIndex >= 3) { uviEl.addClass("uv-med") };
+// if (uvIndex >= 6) { uviEl.addClass("uv-high") };
+// if (uvIndex >= 8) { uviEl.addClass("uv-veryhigh") };
+// if (uvIndex > 11) { uviEl.addClass("uv-extreme") };
 
 getFiveDay(city);
 }
@@ -145,8 +152,8 @@ var windEl = document.createElement('p');
 var humidEl = document.createElement('p');
 var imgEl = document.createElement('img');
 
-card.setAttribute('class', 'card');
-cardBody.setAttribute('class', 'card-body col text-dark m-2');
+card.setAttribute('class', 'card bg-primary');
+cardBody.setAttribute('class', 'card-body col text-light m-2');
 card.append(cardBody);
 
 // cardTitle.setAttribute('class', 'card-title');
@@ -167,41 +174,6 @@ cardBody.append(cardTitle, tempEl, windEl, humidEl);
 forecastContainer.append(card);
 }
 
-var previousCityBtn = document.querySelectorAll('.prev-city');
-for (let i = 0; i < previousCityBtn.length; i++) {
-  previousCityBtn[i].onclick = function (event) {
-    event.preventDefault();
-    var previousSearchCity = document.querySelector(this).text();
-    var previousSearchCity = $(this).text();
-    getCoordinates(previousSearchCity);
-  }
-}
-
-//save searched cities to local storage
-var saveToStorage = function() {
-  var currentHistory = document.querySelectorAll('.prev-city');
-  for (let i = 0; 1< currentHiistory.length; i++) {
-    var listedCity = currentHistory[i].textContent;
-    searchHist[i] = listedCity;
-    localStorage.setItem("Search Hist", JSON.stringify(searchHistory));
-  };
-};
-
-//display local storage
-var displaySearchHistory = function() {
-  var storedSearchHist = JSON.parse(localStorage.getItem("Search Hist"));
-  if (storedSearchHist == null) {
-    var searchHist = [];
-    document.getElementById('current-weather').classList.remove('hide');
-  }
-  else {
-    searchHist = storedSearchHistory;
-    for (let i = 0; i < searchHist.length; i++) {
-      cityHist(searchHist[i]);
-    }
-    getCoordinates(searchHist[0]);
-  };
-};
 
 
 // add event listener to search button

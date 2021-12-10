@@ -14,3 +14,23 @@
 .hide {
   display: none;
 }
+
+.uv-low {
+  background-color: #8dc443;
+}
+
+.uv-med {
+  background-color: #fdd835;
+}
+
+.uv-high {
+  background-color: #ff8801;
+}
+
+.uv-veryhigh {
+  background-color: #d1394a;
+}
+
+.uv-extreme {
+  background-color: #9e0000;
+}
