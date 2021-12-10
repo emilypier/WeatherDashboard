@@ -19,75 +19,32 @@
     <section class="row w-100 justify-content-center container-fluid">
       <div class="container">
         <div class="row">
-
-        <!-- city input section-->
-        <div id="input-container" class="container col-3">
-          <h2>Search for a city:</h2>
-          <input id="city-input" type="text" class="form-control" id="formGroupExampleInput" placeholder="San Diego">
-          <button id="search-button" type="button" class="btn btn-primary w-100">Search</button>
-          <div class="btn-group-vertical w-100" id='searchHistory'>
-            <!-- <button type="button" id="cincinnati" class="btn btn-light">Cincinnati</button>
-            <button type="button" id="austin" class="btn btn-light">Austin</button>
-            <button type="button" id="chicago" class="btn btn-light">Chicago</button>
-            <button type="button" id="newyork" class="btn btn-light">New York</button>
-            <button type="button" id="sanfrancisco" class="btn btn-light">San Francisco</button>
-            <button type="button" id="seattle" class="btn btn-light">Seattle</button>
-            <button type="button" id="denver" class="btn btn-light">Denver</button>
-            <button type="button" id="atlanta" class="btn btn-light">Atlanta</button> -->
-          </div>
-        </div>
-        
-        <!-- entire output section-->
-        <div id="output-container" class="col-9">
-          <!-- today's forecast-->
-              <div class="col" id="currentWeather">
-              <!-- <div class="card">
-                      <div class="card-body">
-                        <h2 class="card-title">Cincinnati, 3/30/2021</h2>
-                        <p class="card-text">Temp:</p>
-                        <p class="card-text">Wind:</p>
-                        <p class="card-text">Humidity:</p>
-                        <p class="card-text">UV index:</p>
-                      </div>
-                  </div> -->
-              <!-- 5 day forecast-->
-              </div>
-              <div class="row mt-2" id="forecast">
-                <!-- <div class="daily-forecast card col text-white m-2">
-                  day 1 </br>
-                  Temp: </br>
-                  Wind: </br>
-                  Humidity: </br>
-                </div>
-                <div class="daily-forecast card col text-white m-2">
-                  day 1 </br>
-                  Temp: </br>
-                  Wind: </br>
-                  Humidity: </br>
-                </div>
-                <div class="daily-forecast card col text-white m-2">
-                  day 1 </br>
-                  Temp: </br>
-                  Wind: </br>
-                  Humidity: </br>
-                </div>
-                <div class="daily-forecast card col text-white m-2">
-                  day 1 </br>
-                  Temp: </br>
-                  Wind: </br>
-                  Humidity: </br>
-                </div>
-                <div class="daily-forecast card col text-white m-2">
-                  day 1 </br>
-                  Temp: </br>
-                  Wind: </br>
-                  Humidity: </br>
-                </div> -->
+          <!-- city input section-->
+          <div id="input-container" class="container col-3">
+            <h2>Search for a city:</h2>
+            <input id="city-input" type="text" class="form-control" id="formGroupExampleInput" placeholder="San Diego">
+            <button id="search-button" type="button" class="btn btn-primary w-100">Search</button>
+            <div class="btn-group-vertical w-100" id='searchHistory'>
+              <!-- <button type="button" id="cincinnati" class="btn btn-light">Cincinnati</button>
+              <button type="button" id="austin" class="btn btn-light">Austin</button>
+              <button type="button" id="chicago" class="btn btn-light">Chicago</button>
+              <button type="button" id="newyork" class="btn btn-light">New York</button>
+              <button type="button" id="sanfrancisco" class="btn btn-light">San Francisco</button>
+              <button type="button" id="seattle" class="btn btn-light">Seattle</button>
+              <button type="button" id="denver" class="btn btn-light">Denver</button>
+              <button type="button" id="atlanta" class="btn btn-light">Atlanta</button> -->
             </div>
+          </div>
+          
+          <!-- entire output section-->
+          <div id="output-container" class="col-9">
+            <!-- today's forecast-->
+            <div class="col" id="currentWeather"></div>
+            <!-- 5 day forecast-->
+            <div class="row mt-2" id="forecast"></div>
           </div>
         </div>
       </div>
-
     </section>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

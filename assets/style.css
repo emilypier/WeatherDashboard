@@ -10,3 +10,7 @@
 .daily-forecast {
   background-color: #46425c;
 }
+
+.hide {
+  display: none;
+}
