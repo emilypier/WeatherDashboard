@@ -1,7 +1,8 @@
-var searchButtonEl = document.querySelector("#search-button");
-var cityInputEl = document.querySelector("#city-input");
-var currentWeatherContainer =  document.getElementById('currentWeather');
-var forecastContainer = document.getElementById('forecast');
+var searchButtonEl = document.querySelector('#search-button');
+var cityInputEl = document.querySelector('#city-input');
+var currentWeatherContainer =  document.querySelector('#currentWeather');
+var forecastContainer = document.querySelector('#forecast');
+var uviEl = document.querySelector('.uvi');
 
 var buttonClickHandler = function(event) {
   //prevent page from refreshing
@@ -56,6 +57,7 @@ var getTodayWeather = function(weatherData) {
     }
     }).then(function(data) {
       createCurrentWeather(data.current, cityName)
+      console.log(data);
     }).catch(function (error) {
     alert("unable to connect to API");
     console.log(error);
@@ -68,6 +70,9 @@ var temp = currentWeather.temp;
 var windSpeed = currentWeather.wind_speed;
 var humidity = currentWeather.humidity;
 var uvIndex = currentWeather.uvi;
+var unixDate = currentWeather.dt;
+var formattedDate = new Date(unixDate * 1000).toLocaleDateString("en-US"); //converting unix time to reg date
+
 var icon = 'https://openweathermap.org/img/w/'+ currentWeather.weather[0].icon+'.png';
 
 var card = document.createElement('div');
@@ -87,15 +92,15 @@ cardTitle.setAttribute('class', 'card-title');
 tempEl.setAttribute('class', 'card-text');
 windEl.setAttribute('class', 'card-text');
 humidEl.setAttribute('class', 'card-text');
-uviEl.setAttribute('class', 'card-text');
+uviEl.setAttribute('class', 'card-text uvi');
 
-cardTitle.textContent = city + "(add date here)";
+cardTitle.textContent = city + " " + formattedDate;
 imgEl.setAttribute('src', icon);
 cardTitle.append(imgEl);
 
-tempEl.textContent = 'Temp: ' + temp;
-windEl.textContent = 'Wind: ' + windSpeed;
-humidEl.textContent = 'Humidity: ' + humidity; 
+tempEl.textContent = 'Temp: ' + temp + " °F";
+windEl.textContent = 'Wind: ' + windSpeed + " MPH";
+humidEl.textContent = 'Humidity: ' + humidity + "%"; 
 uviEl.textContent = 'UV Index: ' + uvIndex;
 
 cardBody.append(cardTitle, tempEl, windEl, humidEl, uviEl);
@@ -116,10 +121,8 @@ getFiveDay(city);
 
 //get 5 day forecast
 function getFiveDay(cityName) {
-  // var cityName = forecastData.city; 
-  // var cityName = cityInputEl.value.trim();
 
-  var fiveDayForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=a8bab6393759582134a19e65e0844b91";
+  var fiveDayForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=imperial&appid=a8bab6393759582134a19e65e0844b91";
 
   fetch(fiveDayForecast).then(function(response) {
     if(response.ok) {
@@ -130,7 +133,7 @@ function getFiveDay(cityName) {
     }
     }).then(function(data) {
       createFiveDay(data, cityName);
-      console.log("here is the 5 day forecast");
+      console.log(data);
     }).catch(function (error) {
       alert("unable to connect to API");
       console.log(error);
@@ -139,40 +142,49 @@ function getFiveDay(cityName) {
 
 //displays 5 day forecast on page
 function createFiveDay(forecastData, cityName){
-var temp = forecastData.temp;
-var windSpeed = forecastData.wind_speed;
-var humidity = forecastData.humidity;
-var icon = 'https://openweathermap.org/img/w/' + forecastData.list[0].weather[0].icon + '.png';
+  //loop to show only 5 daily forecasts. i=i+8 bc every 8th item in list array is a different day
+  for (var i = 0; i < forecastData.list.length; i = i + 8) {
 
-var card = document.createElement('div');
-var cardBody = document.createElement('div');
-var cardTitle = document.createElement('h2');
-var tempEl = document.createElement('p');
-var windEl = document.createElement('p');
-var humidEl = document.createElement('p');
-var imgEl = document.createElement('img');
+    var date = forecastData.list[i].dt_txt;
+    var splitDay = date.substring(8, 10); //splits date string to get just day
+    var splitMonth = date.substring(5, 7); //splits date string to get just month
+    var splitYear = date.substring(2, 4); //splits date string to get just year
+    var formattedDate = splitMonth + "/" + splitDay + "/" + splitYear; // formats date MM/DD/YY 
+    var temp = forecastData.list[i].main.temp;
+    var windSpeed = forecastData.list[i].wind.speed;
+    var humidity = forecastData.list[i].main.humidity;
+    var icon = 'https://openweathermap.org/img/w/' + forecastData.list[i].weather[0].icon + '.png';
 
-card.setAttribute('class', 'card bg-primary');
-cardBody.setAttribute('class', 'card-body col text-light m-2');
-card.append(cardBody);
+    var card = document.createElement('div');
+    var cardBody = document.createElement('div');
+    var cardTitle = document.createElement('h4');
+    var tempEl = document.createElement('p');
+    var windEl = document.createElement('p');
+    var humidEl = document.createElement('p');
+    var imgEl = document.createElement('img');
 
-// cardTitle.setAttribute('class', 'card-title');
-tempEl.setAttribute('class', 'card-text');
-windEl.setAttribute('class', 'card-text');
-humidEl.setAttribute('class', 'card-text');
+    card.setAttribute('class', 'card');
+    cardBody.setAttribute('class', 'card text-light justify-content-between bg-primary mx-2');
+    card.append(cardBody);
 
-cardTitle.textContent = "(call date in here)";
-imgEl.setAttribute('src', icon);
-cardTitle.append(imgEl);
+    cardTitle.setAttribute('class', 'card-title');
+    tempEl.setAttribute('class', 'card-text');
+    windEl.setAttribute('class', 'card-text');
+    humidEl.setAttribute('class', 'card-text');
 
-tempEl.textContent = 'Temp: ' + temp;
-windEl.textContent = 'Wind: ' + windSpeed;
-humidEl.textContent = 'Humidity: ' + humidity; 
+    cardTitle.textContent = formattedDate;
+    imgEl.setAttribute('src', icon);
+    cardTitle.append(imgEl);
 
-cardBody.append(cardTitle, tempEl, windEl, humidEl);
+    tempEl.textContent = 'Temp: ' + temp + " °F";
+    windEl.textContent = 'Wind: ' + windSpeed + " MPH";
+    humidEl.textContent = 'Humidity: ' + humidity + "%"; 
 
-forecastContainer.append(card);
-}
+    cardBody.append(cardTitle, tempEl, windEl, humidEl);
+
+    forecastContainer.append(card);
+    };
+};
 
 
 
