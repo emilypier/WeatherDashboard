@@ -108,15 +108,20 @@ cardBody.append(cardTitle, tempEl, windEl, humidEl, uviEl);
 currentWeatherContainer.innerHTML = '';
 currentWeatherContainer.append(card);
 
-// // UV index color coding
-// if (uvIndex < 3) { uviEl.addClass("uv-low") };
-// if (uvIndex >= 3) { uviEl.addClass("uv-med") };
-// if (uvIndex >= 6) { uviEl.addClass("uv-high") };
-// if (uvIndex >= 8) { uviEl.addClass("uv-veryhigh") };
-// if (uvIndex > 11) { uviEl.addClass("uv-extreme") };
-
 getFiveDay(city);
-}
+
+// UV index color coding
+if (uvIndex < 3) {
+  uviEl.addClass("uv-low") };
+if (uvIndex >= 3)
+  { uviEl.addClass("uv-med") };
+if (uvIndex >= 6) {
+  uviEl.addClass("uv-high") };
+if (uvIndex >= 8)
+  { uviEl.addClass("uv-veryhigh") };
+if (uvIndex > 11)
+  { uviEl.addClass("uv-extreme") };
+};
 
 
 //get 5 day forecast
@@ -185,6 +190,28 @@ function createFiveDay(forecastData, cityName){
     forecastContainer.append(card);
     };
 };
+
+// // make search history buttons
+// var saveSearchHistory  = function (cityName) {
+//   // create previous city button
+//   var searchContainer = document.querySelector('#search-container');
+//   var buttonContainer = document.querySelector('<div>');
+//     // .addClass(" styling stuff here");
+//   var cityHistButton = document.querySelector('<button>')
+//     .addClass('btn btn-primary w-100')
+//     .attr('type', 'submit')
+//     .text(cityName);
+//   buttonContainer.append(cityHistButton);
+//   searchContainer.append(buttonContainer);
+//   saveToStorage();
+//   };
+
+// // save searched cities to local storage
+
+
+// //get weather data by clicking city button
+
+// //when search buttons is clicked, run saveSearchHistory function
 
 
 
