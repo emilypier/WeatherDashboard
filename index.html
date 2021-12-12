@@ -22,19 +22,21 @@
           <!-- city input section-->
           <div id="search-container" class="container col-3">
             <h2>Search for a city:</h2>
-            <input id="city-input" type="text" class="form-control" id="formGroupExampleInput" placeholder="San Diego">
+            <input id="city-input" type="text" class="form-control" placeholder="San Diego">
             <button id="search-button" type="button" class="btn btn-primary w-100">Search</button>
-            <div class="btn-group-vertical w-100" id='search-history'>
-              <!-- <button type="button" id="cincinnati" class="btn btn-light">Cincinnati</button>-->
+            <div id='search-history' class="btn-group-vertical w-100">
+              <!-- <button type="button" id="cincinnati" class="btn btn-light">Cincinnati</button> -->
             </div>
           </div>
           
-          <!-- entire output section-->
-          <div id="output-container" class="col-9">
+          <!-- entire weather section-->
+          <div id="weather-container" class="col-9 px-3">
             <!-- today's forecast-->
-            <div class="col" id="currentWeather"></div>
+            <div id="currentWeather" class="col"></div>
             <!-- 5 day forecast-->
-            <div class="row mt-2" id="forecast"></div>
+            <div id="forecast-container" class="col justify-content-between">
+              <div id="forecast" class="row mt-5"></div>
+            </div>
           </div>
         </div>
       </div>
