@@ -24,7 +24,7 @@ var buttonClickHandler = function(event) {
 
 //get city's coordinates getTodayWeather function
 var getCoordinates = function(cityName) {
-  var cityCoordinates = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=a8bab6393759582134a19e65e0844b91";
+  var cityCoordinates = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=a8bab6393759582134a19e65e0844b91";
 
   fetch(cityCoordinates).then(function(response) {
     if(response.ok) {
